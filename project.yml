@@ -1,0 +1,38 @@
+name: ClaudeNotch
+options:
+  bundleIdPrefix: com.claudenotch
+  deploymentTarget:
+    macOS: "12.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "12.0"
+
+targets:
+  ClaudeNotch:
+    type: application
+    platform: macOS
+    sources:
+      - path: ClaudeNotch
+        excludes:
+          - "**/.DS_Store"
+    settings:
+      base:
+        INFOPLIST_FILE: ClaudeNotch/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.claudenotch.app
+        PRODUCT_NAME: ClaudeNotch
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        GENERATE_INFOPLIST_FILE: false
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_HARDENED_RUNTIME: true
+    dependencies:
+      - sdk: Carbon.framework
+    entitlements:
+      path: ClaudeNotch/ClaudeNotch.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.network.client: true
