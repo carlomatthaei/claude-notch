@@ -1,12 +1,8 @@
-<p align="center">
-  <img src="assets/icon.png" width="120" alt="Claude Notch" />
-</p>
-
 <h1 align="center">Claude Notch</h1>
 
 <p align="center">
   <strong>Live Claude usage stats in your MacBook's notch.</strong><br/>
-  <sub>Session limits, burn rate, analytics, focus timer &mdash; always one hover away.</sub>
+  <sub>Session limits, burn rate, predictive analytics, focus timer &mdash; always one hover away.</sub>
 </p>
 
 <p align="center">
@@ -29,7 +25,7 @@
 <br/>
 
 <p align="center">
-  <img src="assets/hero.png" width="720" alt="Claude Notch Hero" />
+  <img src="assets/collapsed.png" width="600" alt="Claude Notch — usage percentages in the notch bar" />
 </p>
 
 <br/>
@@ -110,38 +106,61 @@
 
 ## Screenshots
 
+### Dashboard
+
 <p align="center">
-  <img src="assets/collapsed.png" width="380" alt="Notch wings showing session and weekly %" />
+  <img src="assets/expanded-stats.png" width="420" alt="Live usage dashboard with session, weekly, sonnet, extra usage" />
   &nbsp;&nbsp;
-  <img src="assets/expanded-stats.png" width="380" alt="Expanded dashboard with all stats" />
+  <img src="assets/analytics.png" width="420" alt="Predictive analytics with forecast bars and sparklines" />
 </p>
 
 <p align="center">
-  <img src="assets/analytics.png" width="380" alt="Analytics with forecast and sparklines" />
+  <sub>Left: Live dashboard with session, weekly, Sonnet, and extra usage &mdash; Right: Predictive analytics with burn rate and forecast</sub>
+</p>
+
+### Tools
+
+<p align="center">
+  <img src="assets/focus-timer.png" width="280" alt="Pomodoro focus timer" />
   &nbsp;&nbsp;
-  <img src="assets/settings.png" width="380" alt="Settings page" />
+  <img src="assets/system.png" width="280" alt="System monitor — CPU and RAM" />
+  &nbsp;&nbsp;
+  <img src="assets/notes.png" width="280" alt="Rich text notes" />
 </p>
 
 <p align="center">
-  <img src="assets/focus-timer.png" width="380" alt="Pomodoro focus timer" />
-  &nbsp;&nbsp;
-  <img src="assets/setup.png" width="380" alt="One-click sign-in setup wizard" />
+  <sub>Focus Timer &mdash; System Monitor &mdash; Rich Notes</sub>
 </p>
 
-<details>
-<summary>Add your own screenshots</summary>
+### Settings & About
 
-Take screenshots of the app and save them to the `assets/` folder:
-- `icon.png` &mdash; app icon (128&times;128)
-- `hero.png` &mdash; hero banner (1440&times;900 recommended)
-- `collapsed.png` &mdash; notch bar with usage percentages
-- `expanded-stats.png` &mdash; expanded panel showing stats
-- `analytics.png` &mdash; analytics page with forecast
-- `settings.png` &mdash; settings page
-- `focus-timer.png` &mdash; pomodoro timer
-- `setup.png` &mdash; setup wizard / sign-in
+<p align="center">
+  <img src="assets/settings.png" width="420" alt="Settings with size, pacing, alerts, refresh" />
+  &nbsp;&nbsp;
+  <img src="assets/about.png" width="420" alt="About page with star, donate, feedback" />
+</p>
 
-</details>
+<p align="center">
+  <sub>Settings with all configuration options &mdash; About page with GitHub star, donate, and feedback</sub>
+</p>
+
+### Onboarding
+
+<p align="center">
+  <img src="assets/setup-firstpage.png" width="380" alt="Welcome to Claude Notch" />
+  &nbsp;&nbsp;
+  <img src="assets/setup.png" width="380" alt="One-click sign in with Claude" />
+</p>
+
+<p align="center">
+  <img src="assets/customize-notch-onboarding.png" width="380" alt="Customize your notch display" />
+  &nbsp;&nbsp;
+  <img src="assets/you-are-all-set.png" width="380" alt="Setup complete — you're all set" />
+</p>
+
+<p align="center">
+  <sub>4-step onboarding: Welcome &rarr; One-click sign in &rarr; Customize &rarr; Done</sub>
+</p>
 
 ---
 
@@ -167,7 +186,7 @@ Hit **Cmd + R** in Xcode. Requires Xcode 15+ and macOS 12 SDK.
 
 <table>
 <tr>
-<td>1.</td>
+<td width="40">1.</td>
 <td><strong>Launch</strong> Claude Notch &mdash; the setup wizard opens on first run.</td>
 </tr>
 <tr>
@@ -189,7 +208,8 @@ Hit **Cmd + R** in Xcode. Requires Xcode 15+ and macOS 12 SDK.
 </table>
 
 <details>
-<summary>Manual setup (fallback)</summary>
+<summary><strong>Manual setup (fallback)</strong></summary>
+<br/>
 
 If the built-in browser doesn't work, you can paste the session key manually:
 
@@ -201,7 +221,7 @@ If the built-in browser doesn't work, you can paste the session key manually:
 
 </details>
 
-> **Privacy:** Only the session token is stored (locally in macOS UserDefaults). Your email and password are never seen or stored by the app. All API requests go directly to `claude.ai` &mdash; no intermediary servers, no telemetry, no tracking.
+> **Privacy:** Only the session token is stored (locally in macOS UserDefaults). Your email and password are never seen or stored by the app. All requests go directly to `claude.ai` &mdash; no intermediary servers, no telemetry, no tracking.
 
 ---
 
@@ -219,8 +239,6 @@ If the built-in browser doesn't work, you can paste the session key manually:
 | Auto-start at Login | On / Off | Off |
 | Global Hotkey | &mdash; | `Ctrl+Opt+C` |
 
-Settings are persisted across app restarts via `UserDefaults`.
-
 ---
 
 ## Architecture
@@ -229,8 +247,8 @@ Settings are persisted across app restarts via `UserDefaults`.
 ClaudeNotch/
 ├── AppDelegate.swift                 App lifecycle, screen & wake observers
 ├── Core/
-│   ├── NotchHoverWindow.swift        Main UI: notch bar + 7-page panel
-│   ├── NotchShapes.swift             Custom wing/panel bezier shapes
+│   ├── NotchHoverWindow.swift        Main UI: notch bar + 7-page dropdown panel
+│   ├── NotchShapes.swift             Custom wing & panel bezier shapes
 │   ├── HotKeyManager.swift           Carbon-based global hotkey (⌃⌥C)
 │   ├── UpdateChecker.swift           GitHub Releases auto-update checker
 │   └── DisplayManager.swift          Multi-display support
@@ -250,12 +268,12 @@ ClaudeNotch/
 | Decision | Why |
 |:---------|:----|
 | `NSWindow` at `.screenSaver` level | Always visible above all apps including fullscreen |
-| `NotchWindow: NSWindow` with `canBecomeKey` | Borderless windows can't receive keyboard input by default |
+| `NotchWindow` subclass with `canBecomeKey` | Borderless windows can't receive keyboard input by default |
 | `NSHostingView.rootView` update (not replace) | Replacing the view mid-click breaks AppKit button targets |
 | `LSUIElement = true` | No Dock icon, no app-switcher entry &mdash; pure notch utility |
-| 4-stage ISO8601 parser | Handles fractional seconds, timezone offsets, DST transitions |
-| Adaptive polling (1-5 min) | Faster when usage > 70%, saves battery when idle |
-| `TimelineView(.periodic(every: 10))` | Analytics page updates without manual timers |
+| 4-stage ISO8601 date parser | Handles fractional seconds, timezone offsets, DST edge cases |
+| Adaptive polling (1&ndash;5 min) | Faster when usage &gt; 70%, saves battery when idle |
+| `TimelineView(.periodic(every: 10))` | Analytics refresh without manual timer management |
 | `WKWebView` cookie extraction | One-click sign-in without manual DevTools cookie copying |
 
 ---
@@ -280,7 +298,7 @@ Authentication uses the `sessionKey` browser cookie. The app polls at configurab
 | **macOS** | 12.0 Monterey |
 | **Hardware** | Any Mac (notch-aware on MacBook Pro 14"/16") |
 | **Claude Plan** | Pro, Max, or Team (Free works with limited stats) |
-| **Xcode** | 15.0+ (for building from source) |
+| **Xcode** | 15.0+ (build from source only) |
 
 Works on non-notch Macs too &mdash; uses `safeAreaInsets` with a graceful fallback.
 
@@ -291,7 +309,6 @@ Works on non-notch Macs too &mdash; uses `safeAreaInsets` with a graceful fallba
 Contributions, issues, and feature requests are welcome!
 
 ```bash
-# Fork → Clone → Branch → Code → PR
 git checkout -b feature/my-feature
 git commit -m "Add my feature"
 git push origin feature/my-feature
@@ -303,7 +320,7 @@ Please open an [issue](https://github.com/carlomatthaei/claude-notch/issues) fir
 
 ## Support
 
-If Claude Notch saves you from hitting rate limits, consider:
+If Claude Notch saves you from hitting rate limits, consider supporting the project:
 
 <p align="center">
   <a href="https://www.paypal.com/paypalme/carlo080908">
@@ -322,5 +339,5 @@ If Claude Notch saves you from hitting rate limits, consider:
 MIT &copy; 2026 [Carlo Matthaei](https://github.com/carlomatthaei). See [LICENSE](LICENSE).
 
 <p align="center">
-  <sub>Built with SwiftUI + AppKit &mdash; Not affiliated with Anthropic. Claude is a trademark of Anthropic, PBC.</sub>
+  <sub>Built with SwiftUI + AppKit &bull; Not affiliated with Anthropic &bull; Claude is a trademark of Anthropic, PBC.</sub>
 </p>
