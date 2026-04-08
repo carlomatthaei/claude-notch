@@ -22,7 +22,7 @@
   <img src="https://img.shields.io/badge/macOS-12.0%2B-111?style=flat-square&logo=apple&logoColor=white" />
   <img src="https://img.shields.io/badge/Swift-5.9-F05138?style=flat-square&logo=swift&logoColor=white" />
   <img src="https://img.shields.io/github/license/carlomatthaei/claude-notch?style=flat-square&color=44CC66" />
-  <img src="https://img.shields.io/github/stars/carlomatthaei/claude-notch?style=flat-square&color=E87443" />
+  <a href="https://github.com/carlomatthaei/claude-notch/stargazers"><img src="https://img.shields.io/github/stars/carlomatthaei/claude-notch?style=flat-square&color=E87443&cacheSeconds=300" /></a>
   <img src="https://img.shields.io/badge/notch-native-E87443?style=flat-square" />
 </p>
 
